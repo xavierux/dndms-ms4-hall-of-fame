@@ -5,7 +5,6 @@ import com.xvclemente.dnd.dtos.events.ResultadoCombateIndividualEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -13,12 +12,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 @Service
-@Slf4j // Lombok para logging
+@Slf4j
 public class RankingService {
 
-    // Map<ID_Entidad (PJ o EN), Victorias>
     private final Map<String, Integer> victoriasPorId = new ConcurrentHashMap<>();
-    // Map<ID_PJ, OroAcumulado>
     private final Map<String, Integer> oroPorPjId = new ConcurrentHashMap<>();
 
     public void procesarResultadoCombate(ResultadoCombateIndividualEvent event) {

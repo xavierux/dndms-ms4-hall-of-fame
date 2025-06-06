@@ -21,13 +21,25 @@ public class RankingController {
         this.rankingService = rankingService;
     }
 
+    /**
+     * Endpoint para obtener el ranking de victorias.
+     * @param limit Número máximo de entradas en el ranking a devolver (por defecto 10).
+     * @return Un mapa con IDs de PJs/ENs y su número de victorias.
+     */
     @GetMapping("/victories")
     public ResponseEntity<Map<String, Integer>> getVictoryRankings(@RequestParam(defaultValue = "10") int limit) {
-        return ResponseEntity.ok(rankingService.getRankingVictorias(limit));
+        Map<String, Integer> rankings = rankingService.getRankingVictorias(limit);
+        return ResponseEntity.ok(rankings);
     }
 
+    /**
+     * Endpoint para obtener el ranking de oro acumulado por PJs.
+     * @param limit Número máximo de entradas en el ranking a devolver (por defecto 10).
+     * @return Un mapa con IDs de PJs y su cantidad de oro.
+     */
     @GetMapping("/gold")
     public ResponseEntity<Map<String, Integer>> getGoldRankings(@RequestParam(defaultValue = "10") int limit) {
-        return ResponseEntity.ok(rankingService.getRankingOro(limit));
+        Map<String, Integer> rankings = rankingService.getRankingOro(limit);
+        return ResponseEntity.ok(rankings);
     }
 }
